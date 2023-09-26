@@ -12,6 +12,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
+
+// 404 error -> route not there
 app.use((req, res, next) => {
   try {
     //set header before response
@@ -20,6 +22,8 @@ app.use((req, res, next) => {
     next(err);
   }
 });
+
+// collects all errors made in an existing route
 app.use(ErrorHandler);
 
 app.set('port', process.env.PORT || 3010);
